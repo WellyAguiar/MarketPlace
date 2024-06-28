@@ -1,5 +1,14 @@
-import "@/styles/globals.css";
+import '../styles/globals.css';
+import Navbar from '../components/Navbar';
+import { CartProvider } from '@/context/CartContext';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }) {
+  return (
+    <CartProvider>
+      <Navbar />
+      <Component {...pageProps} />
+    </CartProvider>
+  );
 }
+
+export default MyApp;
