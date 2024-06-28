@@ -35,12 +35,12 @@ const handler = async (req, res) => {
       console.log("Parsed fields:", fields);
       console.log("Parsed files:", files);
 
-      const name = fields.name[0].trim();
-      const description = fields.description[0].trim();
-      const price = fields.price[0].trim();
-      const category = fields.category[0].trim();
-      const size = fields.size[0].trim();
-      const color = fields.color[0].trim();
+      const name = fields.name?.[0]?.trim();
+      const description = fields.description?.[0]?.trim();
+      const price = fields.price?.[0]?.trim();
+      const category = fields.category?.[0]?.trim();
+      const size = fields.size?.[0]?.trim();
+      const color = fields.color?.[0]?.trim();
       const imageUrl = files.image ? files.image[0].newFilename : null;
 
       if (
@@ -81,7 +81,7 @@ const handler = async (req, res) => {
         console.log("Product created:", product);
 
         // Handle quantities separately
-        const quantities = JSON.parse(fields.quantity[0] || "{}");
+        const quantities = JSON.parse(fields.quantity?.[0] || "{}");
         for (const [key, value] of Object.entries(quantities)) {
           const [size, color] = key.split("-");
           await prisma.quantity.create({
